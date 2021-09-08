@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CityTableViewCell: UITableViewCell {
+class CityWeatherTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
@@ -27,7 +27,7 @@ class CityTableViewCell: UITableViewCell {
     }
 }
 
-extension CityTableViewCell: ConfigurableCell {
+extension CityWeatherTableViewCell: ConfigurableCell {
     typealias ViewModel = CityWeatherCellViewModel
     
     func configure(from viewModel: CityWeatherCellViewModel) {
