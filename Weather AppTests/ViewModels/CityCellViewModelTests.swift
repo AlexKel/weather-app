@@ -13,6 +13,6 @@ class CityCellViewModelTests: XCTestCase {
         let city = City(id: 1, name: "London", state: "", country: "UK", coord: Coordinate(lon: 1, lat: 2))
         
         let vm = CityCellViewModel(city: city)
-        XCTAssertEqual(vm.name, "London")
+        XCTAssertEqual(vm.name, "London, UK")
     }
 }

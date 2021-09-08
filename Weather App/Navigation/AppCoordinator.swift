@@ -14,7 +14,7 @@ class AppCoordinator: Coordinator {
     let window: UIWindow
     let rootViewController: UINavigationController
     let citiesStore: CitiesStore
-    let citiesListCoordinator: CitiesListCoordinator
+    let citiesListCoordinator: WeatherListCoordinator
     
     
     init(window: UIWindow, store: CitiesStore) {
@@ -22,7 +22,7 @@ class AppCoordinator: Coordinator {
         citiesStore = store
         rootViewController = UINavigationController()
         rootViewController.navigationBar.prefersLargeTitles = true
-        citiesListCoordinator = CitiesListCoordinator(presenter: rootViewController, store: citiesStore)
+        citiesListCoordinator = WeatherListCoordinator(presenter: rootViewController, store: citiesStore)
     }
     
     func start() {

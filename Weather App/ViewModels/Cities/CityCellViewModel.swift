@@ -14,5 +14,5 @@ class CityCellViewModel: CellViewModel {
         self.city = city
     }
     
-    var name: String { return city.name }
+    var name: String { return [city.name, city.country].joined(separator: ", ") }
 }
