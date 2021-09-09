@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import Combine
 
 /// Defines a cities store
 protocol CitiesStore {
@@ -16,18 +16,18 @@ protocol CitiesStore {
     func getFavouriteCities() -> [City]
 }
 
-
 /// Cache for original cities data
 struct CitiesCache {
     let allCities: [City]
+    var favouriteCities: [City] = []
 }
 
 /// Loads cities from a local json file using intialised decoder and data url
 class LocalCitiesStore: CitiesStore {
-    private let cache: CitiesCache
+    private var cache: CitiesCache
     private let userDefaults = UserDefaults(suiteName: "cities")
     private let defaultsKey = "cities.store.favourites"
-    
+    private var disposables = Set<AnyCancellable>()
     
     /// Initialises cities store
     /// - Parameters:
@@ -37,6 +37,9 @@ class LocalCitiesStore: CitiesStore {
         let data = try! Data(contentsOf: url)
         let allCities = try! decoder.decode(from: data)
         cache = CitiesCache(allCities: allCities)
+        loadFavourites().sink { [weak self] (favs) in
+            self?.cache.favouriteCities = favs
+        }.store(in: &disposables)
     }
     
     
@@ -50,26 +53,51 @@ class LocalCitiesStore: CitiesStore {
     /// Stores city id as a reference
     /// - Parameter city: your favourite city
     func addFavourite(city: City) {
-        var favourites = userDefaults?.object(forKey: defaultsKey) as? [Int] ?? []
-        favourites.append(city.id)
-        userDefaults?.setValue(favourites, forKey: defaultsKey)
+        guard !(cache.favouriteCities.contains { $0.id == city.id }) else {
+            return
+        }
+        
+        cache.favouriteCities.append(city)
+        saveFavourites(favs: cache.favouriteCities).sink { (_) in
+            // Saved
+        }.store(in: &disposables)
     }
     
     
     /// Removes city id reference from favourites
     /// - Parameter city: city to remove
     func removeFavourite(city: City) {
-        var favourites = userDefaults?.object(forKey: defaultsKey) as? [Int] ?? []
-        favourites.removeAll { $0 == city.id }
-        userDefaults?.setValue(favourites, forKey: defaultsKey)
+        cache.favouriteCities.removeAll { $0.id == city.id }
+        saveFavourites(favs: cache.favouriteCities).sink { (_) in
+            // Saved
+        }.store(in: &disposables)
     }
     
     
     /// List of favourite cities
     /// - Returns: array of favourite cities
     func getFavouriteCities() -> [City] {
-        let favourites = userDefaults?.object(forKey: defaultsKey) as? [Int] ?? []
-        let cities = cache.allCities.filter { favourites.contains($0.id) }
-        return cities
+        return cache.favouriteCities
+    }
+    
+    private func loadFavourites() -> Future<[City], Never> {
+        print("Load favs")
+        return Future() { [weak self] promise in
+            guard let `self` = self else {
+                return
+            }
+            
+            let favourites = self.userDefaults?.object(forKey: self.defaultsKey) as? [Int] ?? []
+            print("Favourites: ", favourites)
+            let cities = self.cache.allCities.filter { favourites.contains($0.id) }
+            promise(Result.success((cities)))
+        }
+    }
+    
+    private func saveFavourites(favs: [City]) -> Future<Void, Never> {
+        return Future() { promise in
+            self.userDefaults?.setValue(favs.map{ $0.id }, forKey: self.defaultsKey)
+            promise(Result.success(()))
+        }
     }
 }

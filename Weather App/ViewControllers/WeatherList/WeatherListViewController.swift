@@ -6,27 +6,57 @@
 //
 
 import UIKit
+import Combine
 
 class WeatherListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    var viewModel: WeatherListViewModel
+    private let cellIdentifier = "weather_cell"
     
+    init(viewModel: WeatherListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        tableView.register(cell: CityWeatherTableViewCell.self)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.rowHeight = 72
+        tableView.separatorInset = .zero
     }
 
 }
 
 extension WeatherListViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return viewModel.numberOfRows(in: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(forType: CityWeatherTableViewCell.self, indexPath: indexPath)
+        if let vm = viewModel.cellViewModel(for: indexPath) {
+            cell.configure(from: vm)   
+        }
+        
+        return cell
     }
     
-    
+}
+
+extension WeatherListViewController: CitiesSearchPresenter {
+    func citiesSearchDidFinish() {
+        tableView.reloadData()
+    }
 }

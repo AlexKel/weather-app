@@ -11,6 +11,9 @@
 		5F0787EE26E894E50095DAF6 /* CitiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA39E6526E6B66000CE4BB9 /* CitiesListViewModel.swift */; };
 		5F07880A26E963850095DAF6 /* WeatherListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07880926E963850095DAF6 /* WeatherListViewModel.swift */; };
 		5F07881226E9647A0095DAF6 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07881126E9647A0095DAF6 /* ListViewModel.swift */; };
+		5F07881726EAA00D0095DAF6 /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07881626EAA00D0095DAF6 /* MockAPIClient.swift */; };
+		5F07881B26EAA3570095DAF6 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07881126E9647A0095DAF6 /* ListViewModel.swift */; };
+		5F07882026EAA6560095DAF6 /* helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07881F26EAA6560095DAF6 /* helper.swift */; };
 		5FA39E1426E5E05200CE4BB9 /* CityDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA39E1326E5E05200CE4BB9 /* CityDecoder.swift */; };
 		5FA39E1926E5E14900CE4BB9 /* DataDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA39E1826E5E14900CE4BB9 /* DataDecoder.swift */; };
 		5FA39E2126E6129F00CE4BB9 /* LocalCitiesStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA39E2026E6129F00CE4BB9 /* LocalCitiesStoreTests.swift */; };
@@ -87,6 +90,8 @@
 		5F0787E926E894E00095DAF6 /* CitiesListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListViewModelTests.swift; sourceTree = "<group>"; };
 		5F07880926E963850095DAF6 /* WeatherListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewModel.swift; sourceTree = "<group>"; };
 		5F07881126E9647A0095DAF6 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		5F07881626EAA00D0095DAF6 /* MockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
+		5F07881F26EAA6560095DAF6 /* helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
 		5FA39E1326E5E05200CE4BB9 /* CityDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDecoder.swift; sourceTree = "<group>"; };
 		5FA39E1826E5E14900CE4BB9 /* DataDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDecoder.swift; sourceTree = "<group>"; };
 		5FA39E2026E6129F00CE4BB9 /* LocalCitiesStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCitiesStoreTests.swift; sourceTree = "<group>"; };
@@ -262,6 +267,7 @@
 			children = (
 				5FA39ECE26E7FECC00CE4BB9 /* EndpointTests.swift */,
 				5FA39EDE26E8019800CE4BB9 /* APIIntegrationTests.swift */,
+				5F07881626EAA00D0095DAF6 /* MockAPIClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 				5FA39E2A26E613BD00CE4BB9 /* Resources */,
 				5FA39E1126E5DEB900CE4BB9 /* Dependencies */,
 				5FCE01CA26E4BA6A00F8B0C7 /* Info.plist */,
+				5F07881F26EAA6560095DAF6 /* helper.swift */,
 			);
 			path = "Weather AppTests";
 			sourceTree = "<group>";
@@ -591,13 +598,16 @@
 				5FA39E4226E6158100CE4BB9 /* City.swift in Sources */,
 				5FA39EF026E87B9100CE4BB9 /* CityCellViewModelTests.swift in Sources */,
 				5FA39E2126E6129F00CE4BB9 /* LocalCitiesStoreTests.swift in Sources */,
+				5F07881B26EAA3570095DAF6 /* ListViewModel.swift in Sources */,
 				5FA39EAA26E734E600CE4BB9 /* CityWeatherCellViewModelTests.swift in Sources */,
 				5F0787EA26E894E00095DAF6 /* CitiesListViewModelTests.swift in Sources */,
 				5FA39EB226E734F100CE4BB9 /* CityWeatherCellViewModel.swift in Sources */,
 				5F0787EE26E894E50095DAF6 /* CitiesListViewModel.swift in Sources */,
 				5FA39E3326E6151F00CE4BB9 /* CityDecoder.swift in Sources */,
+				5F07882026EAA6560095DAF6 /* helper.swift in Sources */,
 				5FA39EF426E87BFE00CE4BB9 /* CityCellViewModel.swift in Sources */,
 				5FA39E9726E7306800CE4BB9 /* WeatherDecoder.swift in Sources */,
+				5F07881726EAA00D0095DAF6 /* MockAPIClient.swift in Sources */,
 				5FA39E9C26E730B700CE4BB9 /* WeatherDecoderTests.swift in Sources */,
 				5FA39E4D26E620CC00CE4BB9 /* CitiesStore.swift in Sources */,
 				5FA39E9326E7306500CE4BB9 /* Weather.swift in Sources */,

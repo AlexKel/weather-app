@@ -58,7 +58,7 @@ class CitiesListViewModelTests: XCTestCase {
 
     func testTableDelegateFunctions() throws {
         XCTAssertEqual(viewModel?.numberOfSections, 1)
-        XCTAssertEqual(viewModel?.numberOfRows, 3)
+        XCTAssertEqual(viewModel?.numberOfRows(in: 0), 3)
     }
     
     func testReturnsCorrectCityForIndexPath() throws {
@@ -69,11 +69,11 @@ class CitiesListViewModelTests: XCTestCase {
    
     func testCitiesFilterFunction() throws {
         viewModel?.filter(text: "2")
-        XCTAssertEqual(viewModel?.numberOfRows, 1)
+        XCTAssertEqual(viewModel?.numberOfRows(in: 0), 1)
         XCTAssertEqual(viewModel?.dataAt(indexPath: IndexPath(row: 0, section: 1))?.id, 2)
         
         viewModel?.filter(text: "")
-        XCTAssertEqual(viewModel?.numberOfRows, 3)
+        XCTAssertEqual(viewModel?.numberOfRows(in: 0), 3)
     }
 
     func testReturnsCorrectViewModel() throws {

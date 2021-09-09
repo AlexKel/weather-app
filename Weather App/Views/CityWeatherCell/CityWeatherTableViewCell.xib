@@ -16,43 +16,49 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manchester" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KD8-HZ-Ya7">
-                        <rect key="frame" x="10" y="10" width="113" height="27"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KD8-HZ-Ya7">
+                        <rect key="frame" x="10" y="10" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLa-tg-Bto">
-                        <rect key="frame" x="276" y="6.5" width="34" height="34"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLa-tg-Bto">
+                        <rect key="frame" x="310" y="10" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijd-6J-vfc">
-                        <rect key="frame" x="10" y="47.5" width="31" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijd-6J-vfc">
+                        <rect key="frame" x="10" y="62" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L:15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnv-Eg-W8k">
-                        <rect key="frame" x="286.5" y="47.5" width="23.5" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnv-Eg-W8k">
+                        <rect key="frame" x="310" y="62" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H:15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFb-gl-C1H">
-                        <rect key="frame" x="256" y="47.5" width="25.5" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFb-gl-C1H">
+                        <rect key="frame" x="305" y="62" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="xMJ-GV-NMO">
+                        <rect key="frame" x="290" y="10" width="20" height="20"/>
+                        <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="KD8-HZ-Ya7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="2GY-bc-gP2"/>
                     <constraint firstItem="cnv-Eg-W8k" firstAttribute="leading" secondItem="zFb-gl-C1H" secondAttribute="trailing" constant="5" id="43M-RO-xIx"/>
                     <constraint firstItem="KD8-HZ-Ya7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="BoW-vM-ShL"/>
+                    <constraint firstAttribute="trailing" secondItem="xMJ-GV-NMO" secondAttribute="trailing" constant="10" id="IJc-Tt-4Sa"/>
                     <constraint firstItem="mLa-tg-Bto" firstAttribute="centerY" secondItem="KD8-HZ-Ya7" secondAttribute="centerY" id="ISY-vz-T2h"/>
                     <constraint firstItem="zFb-gl-C1H" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ijd-6J-vfc" secondAttribute="trailing" constant="10" id="IYS-MZ-X4p"/>
+                    <constraint firstItem="xMJ-GV-NMO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="JaU-WB-VyO"/>
                     <constraint firstItem="mLa-tg-Bto" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KD8-HZ-Ya7" secondAttribute="trailing" constant="10" id="Jp9-Gm-PNZ"/>
                     <constraint firstItem="Ijd-6J-vfc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="KD8-HZ-Ya7" secondAttribute="bottom" constant="2" id="KUh-8V-WKf"/>
                     <constraint firstAttribute="bottom" secondItem="Ijd-6J-vfc" secondAttribute="bottom" constant="10" id="QEc-jV-ucd"/>
@@ -67,19 +73,12 @@
             <connections>
                 <outlet property="conditionsLabel" destination="Ijd-6J-vfc" id="MMa-sD-CK9"/>
                 <outlet property="highTempLabel" destination="zFb-gl-C1H" id="dP7-GN-hrt"/>
+                <outlet property="loadingIndicator" destination="xMJ-GV-NMO" id="amW-9x-UqG"/>
                 <outlet property="lowTempLabel" destination="cnv-Eg-W8k" id="owO-te-mIu"/>
                 <outlet property="nameLabel" destination="KD8-HZ-Ya7" id="7Ti-ga-PJe"/>
                 <outlet property="tempLabel" destination="mLa-tg-Bto" id="gDR-48-rZ4"/>
             </connections>
             <point key="canvasLocation" x="82.608695652173921" y="138.61607142857142"/>
         </tableViewCell>
-        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Aug-6H-8Z8">
-            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-            <nil key="textColor"/>
-            <nil key="highlightedColor"/>
-            <point key="canvasLocation" x="84" y="65"/>
-        </label>
     </objects>
 </document>

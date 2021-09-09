@@ -15,7 +15,8 @@ class CitySearchTableViewController: UITableViewController {
     
     weak var delegate: CitySearchTableViewControllerDelete?
     private let cityCellIdentifier = "city_cell"
-    var viewModel: CitiesListViewModel
+    let viewModel: CitiesListViewModel
+    private var searchDebounceTimer: Timer?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,7 @@ class CitySearchTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows
+        return viewModel.numberOfRows(in: section)
     }
 
     
@@ -60,8 +61,12 @@ class CitySearchTableViewController: UITableViewController {
 
 extension CitySearchTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        viewModel.filter(text: searchBar.text ?? "")
-        tableView.reloadData()
+        searchDebounceTimer?.invalidate()
+        searchDebounceTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
+            let searchBar = searchController.searchBar
+            self?.viewModel.filter(text: searchBar.text ?? "")
+            self?.tableView.reloadData()
+        }
+        
     }
 }

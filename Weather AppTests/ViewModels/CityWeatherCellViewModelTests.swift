@@ -6,17 +6,20 @@
 //
 
 import XCTest
+import Combine
 
 class CityWeatherCellViewModelTests: XCTestCase {
 
     func testCityWeatherCellViewModel() throws {
-        let weather = Weather(id: 1, name: "London", condition: "Cloudy", temp: 19.5, tempMin: 16.88, tempMax: 22.34)
-        let vm = CityWeatherCellViewModel(weather: weather)
+        let city = City(id: 1, name: "London", state: "", country: "UK", coord: Coordinate(lon: 1, lat: 1))
+        let data = Helper.loadFile(named: "sample_weather")
+        let client = MockAPIClient(data: data)
+        let vm = CityWeatherCellViewModel(city: city, client: client)
         XCTAssertEqual(vm.name, "London")
         XCTAssertEqual(vm.temp, "20°")
-        XCTAssertEqual(vm.tempMax, "H:22°")
+        XCTAssertEqual(vm.tempMax, "H:21°")
         XCTAssertEqual(vm.tempMin, "L:17°")
-        XCTAssertEqual(vm.condition, "Cloudy")
+        XCTAssertEqual(vm.condition, "Clouds")
     }
 
 }

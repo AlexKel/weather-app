@@ -6,21 +6,52 @@
 //
 
 import Foundation
+import Combine
+
 
 class CityWeatherCellViewModel: CellViewModel {
-    private let weather: Weather
     
-    init(weather: Weather) {
-        self.weather = weather
+    private let city: City
+    private var weather: Weather?
+    private let client: APIClient
+    private var disposables = Set<AnyCancellable>()
+    
+    init(city: City, client: APIClient) {
+        self.city = city
+        self.client = client
+        load()
     }
     
-    var name: String { return weather.name }
-    var temp: String { return tempString(value: weather.temp) }
-    var tempMin: String { return "L:\(tempString(value: weather.tempMin))" }
-    var tempMax: String { return "H:\(tempString(value: weather.tempMax))" }
-    var condition: String { return weather.condition }
+    @Published var loading: Bool = true
     
-    private func tempString(value: Double) -> String {
-        return String(format: "%.0f°", round(value))
+    var name: String { return city.name }
+    var temp: String { return tempString(value: weather?.temp) }
+    var tempMin: String { return loading ? "" : "L:\(tempString(value: weather?.tempMin))" }
+    var tempMax: String { return loading ? "" : "H:\(tempString(value: weather?.tempMax))" }
+    var condition: String { return weather?.condition ?? "" }
+    
+    private func tempString(value: Double?) -> String {
+        guard let val = value else {
+            return ""
+        }
+        return String(format: "%.0f°", round(val))
+    }
+    
+    
+    
+    func load() {
+        client.publisher(for: Endpoint.currentWeather(cityId: city.id), decoder: JSONWeatherDecoder()).sink {
+            [weak self] completion in
+            switch completion {
+            case .finished: break
+            case .failure(let error):
+                // TODO: Handle error
+                print("Failed to load: \(error)")
+                self?.loading = false
+            }
+        } receiveValue: { [weak self] weather in
+            self?.weather = weather
+            self?.loading = false
+        }.store(in: &disposables)
     }
 }

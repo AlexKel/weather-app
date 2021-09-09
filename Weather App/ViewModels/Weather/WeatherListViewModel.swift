@@ -22,21 +22,23 @@ class WeatherListViewModel: ListViewModel {
     
     
     var numberOfSections: Int { return 1 }
-    var numberOfRows: Int { return cities.count }
+    func numberOfRows(in section: Int) -> Int {
+        return cities.count
+    }
     
     func cellViewModel(for indexPath: IndexPath) -> CityWeatherCellViewModel? {
-        if let weather = dataAt(indexPath: indexPath) {
-            return CityWeatherCellViewModel(weather: weather)
+        if let city = dataAt(indexPath: indexPath) {
+            return CityWeatherCellViewModel(city: city, client: client)
         }
         return nil
     }
     
-    func dataAt(indexPath: IndexPath) -> Weather? {
-        guard indexPath.row < weather.count else {
+    func dataAt(indexPath: IndexPath) -> City? {
+        guard indexPath.row < cities.count else {
             return nil
         }
         
-        return weather[indexPath.row]
+        return cities[indexPath.row]
     }
     
 }

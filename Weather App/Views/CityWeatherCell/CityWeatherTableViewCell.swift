@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class CityWeatherTableViewCell: UITableViewCell {
 
@@ -14,6 +15,8 @@ class CityWeatherTableViewCell: UITableViewCell {
     @IBOutlet weak var conditionsLabel: UILabel!
     @IBOutlet weak var highTempLabel: UILabel!
     @IBOutlet weak var lowTempLabel: UILabel!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    private var disposables = Set<AnyCancellable>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,10 +34,21 @@ extension CityWeatherTableViewCell: ConfigurableCell {
     typealias ViewModel = CityWeatherCellViewModel
     
     func configure(from viewModel: CityWeatherCellViewModel) {
-        nameLabel.text = viewModel.name
-        tempLabel.text = viewModel.temp
-        conditionsLabel.text = viewModel.condition
-        highTempLabel.text = viewModel.tempMax
-        lowTempLabel.text = viewModel.tempMin
+        viewModel.$loading.receive(on: DispatchQueue.main).sink { [weak self] (loading) in
+            if loading {
+                self?.loadingIndicator.startAnimating()
+            } else {
+                self?.loadingIndicator.stopAnimating()
+            }
+
+            self?.nameLabel.text = viewModel.name
+            self?.tempLabel.text = viewModel.temp
+            self?.conditionsLabel.text = viewModel.condition
+            self?.highTempLabel.text = viewModel.tempMax
+            self?.lowTempLabel.text = viewModel.tempMin
+
+        }.store(in: &disposables)
     }
+    
+
 }

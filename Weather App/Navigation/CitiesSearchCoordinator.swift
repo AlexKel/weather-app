@@ -7,9 +7,13 @@
 
 import UIKit
 
+protocol CitiesSearchPresenter: UIViewController {
+    func citiesSearchDidFinish()
+}
+
 class CitiesSearchCoordinator: Coordinator {
     // Presenter and data controller
-    private let presenter: UIViewController
+    private let presenter: CitiesSearchPresenter
     private let store: CitiesStore
     
     // View controllers
@@ -17,13 +21,14 @@ class CitiesSearchCoordinator: Coordinator {
     private var searchController: UISearchController?
     
     
-    init(presenter: UIViewController, store: CitiesStore) {
+    init(presenter: CitiesSearchPresenter, store: CitiesStore) {
         self.presenter = presenter
         self.store = store
     }
     
     func start() {
         let searchResultsController = CitySearchTableViewController(viewModel: CitiesListViewModel(store: store))
+        searchResultsController.delegate = self
         let searchController = UISearchController(searchResultsController: searchResultsController)
         searchController.searchResultsUpdater = searchResultsController
         presenter.navigationItem.searchController = searchController
@@ -38,6 +43,7 @@ extension CitiesSearchCoordinator: CitySearchTableViewControllerDelete {
     func citySearchControllerDidSelectCity(_ city: City) {
         store.addFavourite(city: city)
         searchController?.isActive = false
+        presenter.citiesSearchDidFinish()
     }
 }
 

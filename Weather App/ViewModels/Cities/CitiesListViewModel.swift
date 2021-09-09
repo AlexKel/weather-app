@@ -17,8 +17,9 @@ class CitiesListViewModel: ListViewModel {
     }
     
     var numberOfSections: Int { return 1 }
-    
-    var numberOfRows: Int { return cities.count }
+    func numberOfRows(in section: Int) -> Int {
+        return cities.count
+    }
     
     func cellViewModel(for indexPath: IndexPath) -> CityCellViewModel? {
         if let city = dataAt(indexPath: indexPath) {

@@ -12,20 +12,22 @@ class WeatherListCoordinator: Coordinator {
     // Presenter and data controller
     private let presenter: UINavigationController
     private let store: CitiesStore
+    private let client: APIClient
     
     // View controller
     private var weatherListViewController: WeatherListViewController?
     private var searchCoordinator: CitiesSearchCoordinator?
     
     
-    init(presenter: UINavigationController, store: CitiesStore) {
+    init(presenter: UINavigationController, store: CitiesStore, client: APIClient) {
         self.presenter = presenter
         self.store = store
+        self.client = client
     }
     
-    func start() {        
+    func start() {
         // Setup weather list view controller
-        let weatherListViewController = WeatherListViewController(nibName: nil, bundle: nil)
+        let weatherListViewController = WeatherListViewController(viewModel: WeatherListViewModel(client: client, store: store))
         weatherListViewController.title = "Weather"
         presenter.pushViewController(weatherListViewController, animated: true)
         self.weatherListViewController = weatherListViewController

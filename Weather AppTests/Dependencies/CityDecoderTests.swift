@@ -10,10 +10,7 @@ import XCTest
 class CityDecoderTests: XCTestCase {
 
     func testCityDataDecoding() throws {
-        guard let url = Bundle(for: CityDecoderTests.self).url(forResource: "sample_cities", withExtension: "json"),
-              let data = try? Data(contentsOf: url) else {
-            fatalError("Cannot load resource from bundle")
-        }
+        let data = Helper.loadFile(named: "sample_cities")
         
         do {
             let cities = try JSONCityDecoder().decode(from: data)

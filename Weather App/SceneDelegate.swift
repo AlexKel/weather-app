@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         store = LocalCitiesStore(decoder: JSONCityDecoder(), url: citiesURL)
         
         // Start with root app coordinator
-        let applicationCoordinator = AppCoordinator(window: window!, store: store!)
+        let applicationCoordinator = AppCoordinator(window: window!, store: store!, client: URLSession.shared)
         self.applicationCoordinator = applicationCoordinator
         
         applicationCoordinator.start()

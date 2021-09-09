@@ -13,7 +13,7 @@ class LocalCitiesStoreTests: XCTestCase {
     
     override func setUp() {
         guard store == nil else { return }
-        guard let url = Bundle(for: CityDecoderTests.self).url(forResource: "sample_cities", withExtension: "json") else {
+        guard let url = Bundle(for: LocalCitiesStoreTests.self).url(forResource: "sample_cities", withExtension: "json") else {
             fatalError("Cannot find test resource")
         }
         

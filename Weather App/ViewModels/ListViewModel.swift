@@ -11,7 +11,7 @@ protocol ListViewModel {
     associatedtype CellViewModelType: CellViewModel
     associatedtype DataType
     var numberOfSections: Int { get }
-    var numberOfRows: Int { get }
+    func numberOfRows(in section: Int) -> Int
     func cellViewModel(for indexPath: IndexPath) -> CellViewModelType?
     func dataAt(indexPath: IndexPath) -> DataType?
 }
