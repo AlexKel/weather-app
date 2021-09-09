@@ -10,10 +10,7 @@ import XCTest
 class WeatherDecoderTests: XCTestCase {
 
     func testWeatherDataDecodingOneCondition() throws {
-        guard let url = Bundle(for: CityDecoderTests.self).url(forResource: "sample_weather", withExtension: "json"),
-              let data = try? Data(contentsOf: url) else {
-            fatalError("Cannot load resource from bundle")
-        }
+        let data = Helper.loadFile(named: "sample_weather")
         
         do {
             let weather = try JSONWeatherDecoder().decode(from: data)
@@ -29,10 +26,7 @@ class WeatherDecoderTests: XCTestCase {
     }
     
     func testWeatherDataDecodingMultipleConditions() throws {
-        guard let url = Bundle(for: CityDecoderTests.self).url(forResource: "sample_weather_2", withExtension: "json"),
-              let data = try? Data(contentsOf: url) else {
-            fatalError("Cannot load resource from bundle")
-        }
+        let data = Helper.loadFile(named: "sample_weather_2")
         
         do {
             let weather = try JSONWeatherDecoder().decode(from: data)

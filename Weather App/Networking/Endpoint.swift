@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Protocol of an endpoint
 protocol APIEndpoint {
     var path: String { get set }
     var queryItems: [URLQueryItem] { get set }
@@ -43,6 +44,19 @@ struct Endpoint<Response: Decodable>: APIEndpoint {
 extension Endpoint where Response == Weather {
     static func currentWeather(cityId: Int) -> Self {
         return Endpoint(path: "weather", queryItems: [URLQueryItem(name: "id", value: "\(cityId)")])
+    }
+}
+
+extension Endpoint where Response == Forecast {
+    /// 7 day forecast endpoint
+    /// - Parameter city: City for which forecast is needed
+    /// - Returns: Endpoint
+    static func forecast(city: City) -> Self {
+        return Endpoint(path: "onecall", queryItems: [
+            URLQueryItem(name: "lat", value: "\(city.coord.lat)"),
+            URLQueryItem(name: "lon", value: "\(city.coord.lon)"),
+            URLQueryItem(name: "exclude", value: "minutely,hourly,alerts,current")
+        ])
     }
 }
 
