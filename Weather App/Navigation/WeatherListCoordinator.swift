@@ -29,12 +29,20 @@ class WeatherListCoordinator: Coordinator {
         // Setup weather list view controller
         let weatherListViewController = WeatherListViewController(viewModel: WeatherListViewModel(client: client, store: store))
         weatherListViewController.title = "Weather"
+        weatherListViewController.delegate = self
         presenter.pushViewController(weatherListViewController, animated: true)
         self.weatherListViewController = weatherListViewController
         
         let searchCoordinator = CitiesSearchCoordinator(presenter: weatherListViewController, store: store)
         searchCoordinator.start()
         self.searchCoordinator = searchCoordinator
+    }
+}
+
+extension WeatherListCoordinator: WeatherListViewControllerDelegate {
+    func weatherListControllerDidSelectCity(_ city: City) {
+        let detailCoordinator = ForecastDetailsCoordinator(presenter: presenter, city: city, store: store, client: client)
+        detailCoordinator.start()
     }
 }
 

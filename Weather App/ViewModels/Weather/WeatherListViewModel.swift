@@ -10,7 +10,6 @@ import Foundation
 class WeatherListViewModel: ListViewModel {
     private let client: APIClient
     private let store: CitiesStore
-    private var weather: [Weather] = []
     private var cities: [City] {
         return store.getFavouriteCities()
     }

@@ -8,11 +8,16 @@
 import UIKit
 import Combine
 
+protocol WeatherListViewControllerDelegate: class {
+    func weatherListControllerDidSelectCity(_ city: City)
+}
+
 class WeatherListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var viewModel: WeatherListViewModel
+    let viewModel: WeatherListViewModel
     private let cellIdentifier = "weather_cell"
+    weak var delegate: WeatherListViewControllerDelegate?
     
     init(viewModel: WeatherListViewModel) {
         self.viewModel = viewModel
@@ -53,6 +58,11 @@ extension WeatherListViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let city = viewModel.dataAt(indexPath: indexPath) {
+            delegate?.weatherListControllerDidSelectCity(city)
+        }
+    }
 }
 
 extension WeatherListViewController: CitiesSearchPresenter {

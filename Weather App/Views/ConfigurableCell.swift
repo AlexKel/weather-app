@@ -7,6 +7,8 @@
 
 import Foundation
 
+// TODO: Create Forecast details VM and ViewController, also Coordinator and push
+
 protocol ConfigurableCell {
     associatedtype ViewModel: CellViewModel
     func configure(from viewModel: ViewModel)
