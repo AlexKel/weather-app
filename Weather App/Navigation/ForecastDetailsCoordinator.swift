@@ -24,7 +24,15 @@ class ForecastDetailsCoordinator: Coordinator {
     
     func start() {
         let details = ForecastDetailsViewController(viewModel: ForecastDetailsViewModel(city: city, client: client, store: store))
+        details.delegate = self
         presenter.pushViewController(details, animated: true)
         self.forecastViewController = details
+    }
+}
+
+extension ForecastDetailsCoordinator: ForecastDetailsViewControllerDelegate {
+    func didSelectDelete() {
+        store.removeFavourite(city: city)
+        presenter.popViewController(animated: true)
     }
 }

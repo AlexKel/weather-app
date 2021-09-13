@@ -18,6 +18,7 @@ class WeatherListViewController: UIViewController {
     let viewModel: WeatherListViewModel
     private let cellIdentifier = "weather_cell"
     weak var delegate: WeatherListViewControllerDelegate?
+    private var disposables = Set<AnyCancellable>()
     
     init(viewModel: WeatherListViewModel) {
         self.viewModel = viewModel
@@ -36,6 +37,17 @@ class WeatherListViewController: UIViewController {
         tableView.delegate = self
         tableView.rowHeight = 72
         tableView.separatorInset = .zero
+        
+        viewModel.$loading.receive(on: DispatchQueue.main).sink { [weak self] (_) in
+            self?.tableView.reloadData()
+        }.store(in: &disposables)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
 
 }

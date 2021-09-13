@@ -17,6 +17,7 @@ class WeatherListCoordinator: Coordinator {
     // View controller
     private var weatherListViewController: WeatherListViewController?
     private var searchCoordinator: CitiesSearchCoordinator?
+    private var detailsCoordinator: ForecastDetailsCoordinator?
     
     
     init(presenter: UINavigationController, store: CitiesStore, client: APIClient) {
@@ -43,6 +44,7 @@ extension WeatherListCoordinator: WeatherListViewControllerDelegate {
     func weatherListControllerDidSelectCity(_ city: City) {
         let detailCoordinator = ForecastDetailsCoordinator(presenter: presenter, city: city, store: store, client: client)
         detailCoordinator.start()
+        self.detailsCoordinator = detailCoordinator
     }
 }
 

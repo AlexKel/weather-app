@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import Combine
 
 class MockCitiesStore: CitiesStore {
     
-    private let cities: [City]
+    @Published private var cities: [City]
     private var favs: [City] = []
     
     init(cities: [City]) {
@@ -31,5 +32,9 @@ class MockCitiesStore: CitiesStore {
     
     func getFavouriteCities() -> [City] {
         return favs
+    }
+    
+    var favouriteCititiesPublisher: AnyPublisher<[City], Never> {
+        return $cities.eraseToAnyPublisher()
     }
 }

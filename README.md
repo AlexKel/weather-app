@@ -3,7 +3,7 @@
 Sample weather app that fetched current and 7 days weather forecast.
 
 ### To Do
-- Delete cities from fav list
+- ~Delete cities from fav list~
 - Error handling (alerts)
 
 ### Uses

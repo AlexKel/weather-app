@@ -14,10 +14,11 @@ protocol CitiesStore {
     func addFavourite(city: City)
     func removeFavourite(city: City)
     func getFavouriteCities() -> [City]
+    var favouriteCititiesPublisher: AnyPublisher<[City], Never> { get }
 }
 
 /// Cache for original cities data
-struct CitiesCache {
+fileprivate struct CitiesCache {
     let allCities: [City]
     var favouriteCities: [City] = []
 }
@@ -28,6 +29,10 @@ class LocalCitiesStore: CitiesStore {
     private let userDefaults = UserDefaults(suiteName: "cities")
     private let defaultsKey = "cities.store.favourites"
     private var disposables = Set<AnyCancellable>()
+    private let favouriteCititesSubject = PassthroughSubject<[City], Never>()
+    var favouriteCititiesPublisher: AnyPublisher<[City], Never> {
+        return favouriteCititesSubject.eraseToAnyPublisher()
+    }
     
     /// Initialises cities store
     /// - Parameters:
@@ -58,6 +63,7 @@ class LocalCitiesStore: CitiesStore {
         }
         
         cache.favouriteCities.append(city)
+        favouriteCititesSubject.send(cache.favouriteCities)
         saveFavourites(favs: cache.favouriteCities).sink { (_) in
             // Saved
         }.store(in: &disposables)
@@ -68,6 +74,7 @@ class LocalCitiesStore: CitiesStore {
     /// - Parameter city: city to remove
     func removeFavourite(city: City) {
         cache.favouriteCities.removeAll { $0.id == city.id }
+        favouriteCititesSubject.send(cache.favouriteCities)
         saveFavourites(favs: cache.favouriteCities).sink { (_) in
             // Saved
         }.store(in: &disposables)
@@ -81,15 +88,14 @@ class LocalCitiesStore: CitiesStore {
     }
     
     private func loadFavourites() -> Future<[City], Never> {
-        print("Load favs")
         return Future() { [weak self] promise in
             guard let `self` = self else {
                 return
             }
             
             let favourites = self.userDefaults?.object(forKey: self.defaultsKey) as? [Int] ?? []
-            print("Favourites: ", favourites)
             let cities = self.cache.allCities.filter { favourites.contains($0.id) }
+            self.favouriteCititesSubject.send(cities)
             promise(Result.success((cities)))
         }
     }
