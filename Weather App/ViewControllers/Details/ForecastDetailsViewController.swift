@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol ForecastDetailsViewControllerDelegate: class {
-    func didSelectDeleteForCity(_ city: City)
+    func didSelectDelete()
 }
 
 class ForecastDetailsViewController: UIViewController {
@@ -18,6 +18,7 @@ class ForecastDetailsViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     let viewModel: ForecastDetailsViewModel
     private var disposables = Set<AnyCancellable>()
+    weak var delegate: ForecastDetailsViewControllerDelegate?
     
     init(viewModel: ForecastDetailsViewModel) {
         self.viewModel = viewModel
@@ -49,7 +50,22 @@ class ForecastDetailsViewController: UIViewController {
             
         }.store(in: &disposables)
         
+        
+        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteCity(sender:)))
+        navigationItem.rightBarButtonItem = deleteButton
     }
+    
+    // TODO: Pass to coordinator
+    @objc func deleteCity(sender: UIBarButtonItem) {
+        let controller = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .actionSheet)
+        controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        controller.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] (_) in
+            self?.delegate?.didSelectDelete()
+        }))
+        
+        navigationController?.present(controller, animated: true, completion: nil)
+    }
+    
 
 }
 

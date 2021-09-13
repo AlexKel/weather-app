@@ -13,7 +13,7 @@ protocol CitiesSearchPresenter: UIViewController {
 
 class CitiesSearchCoordinator: Coordinator {
     // Presenter and data controller
-    private let presenter: CitiesSearchPresenter
+    private weak var presenter: CitiesSearchPresenter?
     private let store: CitiesStore
     
     // View controllers
@@ -31,7 +31,7 @@ class CitiesSearchCoordinator: Coordinator {
         searchResultsController.delegate = self
         let searchController = UISearchController(searchResultsController: searchResultsController)
         searchController.searchResultsUpdater = searchResultsController
-        presenter.navigationItem.searchController = searchController
+        presenter?.navigationItem.searchController = searchController
         
         
         self.searchController = searchController
@@ -43,7 +43,7 @@ extension CitiesSearchCoordinator: CitySearchTableViewControllerDelete {
     func citySearchControllerDidSelectCity(_ city: City) {
         store.addFavourite(city: city)
         searchController?.isActive = false
-        presenter.citiesSearchDidFinish()
+        presenter?.citiesSearchDidFinish()
     }
 }
 

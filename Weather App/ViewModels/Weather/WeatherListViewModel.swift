@@ -6,17 +6,23 @@
 //
 
 import Foundation
+import Combine
 
 class WeatherListViewModel: ListViewModel {
     private let client: APIClient
     private let store: CitiesStore
-    private var cities: [City] {
-        return store.getFavouriteCities()
-    }
+    private var cities: [City] = []
+    private var disposables = Set<AnyCancellable>()
+    @Published var loading = true
     
     init(client: APIClient, store: CitiesStore) {
         self.client = client
         self.store = store
+        self.cities = store.getFavouriteCities()
+        store.favouriteCititiesPublisher.sink { [weak self] (cities) in
+            self?.cities = cities
+            self?.loading = false
+        }.store(in: &disposables)
     }
     
     

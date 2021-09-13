@@ -30,9 +30,9 @@
 		5F07886A26EB1E8D0095DAF6 /* ForecastDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07886926EB1E8D0095DAF6 /* ForecastDetailsViewModelTests.swift */; };
 		5F07886F26EB1EE40095DAF6 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07886E26EB1EE40095DAF6 /* Loadable.swift */; };
 		5F07887026EB1EE40095DAF6 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07886E26EB1EE40095DAF6 /* Loadable.swift */; };
-		5F07887626EB21360095DAF6 /* MockCitiesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07887526EB21360095DAF6 /* MockCitiesStore.swift */; };
 		5F07887726EB21360095DAF6 /* MockCitiesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07887526EB21360095DAF6 /* MockCitiesStore.swift */; };
 		5F07887E26EB21710095DAF6 /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07881626EAA00D0095DAF6 /* MockAPIClient.swift */; };
+		5F2D2D0726F005DA00F03F64 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5F2D2D0626F005DA00F03F64 /* README.md */; };
 		5F558AED26EB2B05002CE880 /* ForecastDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F558AEB26EB2B05002CE880 /* ForecastDetailsViewController.swift */; };
 		5F558AEE26EB2B05002CE880 /* ForecastDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F558AEC26EB2B05002CE880 /* ForecastDetailsViewController.xib */; };
 		5F558AF626EB2D3B002CE880 /* ForecastDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F558AF526EB2D3B002CE880 /* ForecastDetailsCoordinator.swift */; };
@@ -126,6 +126,7 @@
 		5F07886926EB1E8D0095DAF6 /* ForecastDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		5F07886E26EB1EE40095DAF6 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		5F07887526EB21360095DAF6 /* MockCitiesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCitiesStore.swift; sourceTree = "<group>"; };
+		5F2D2D0626F005DA00F03F64 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5F558AEB26EB2B05002CE880 /* ForecastDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailsViewController.swift; sourceTree = "<group>"; };
 		5F558AEC26EB2B05002CE880 /* ForecastDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastDetailsViewController.xib; sourceTree = "<group>"; };
 		5F558AF526EB2D3B002CE880 /* ForecastDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailsCoordinator.swift; sourceTree = "<group>"; };
@@ -384,6 +385,7 @@
 		5FCE01A526E4BA6000F8B0C7 = {
 			isa = PBXGroup;
 			children = (
+				5F2D2D0626F005DA00F03F64 /* README.md */,
 				5FCE01B026E4BA6100F8B0C7 /* Weather App */,
 				5FCE01C726E4BA6A00F8B0C7 /* Weather AppTests */,
 				5FCE01D226E4BA6A00F8B0C7 /* Weather AppUITests */,
@@ -599,6 +601,7 @@
 			files = (
 				5FA39E8026E6BD0500CE4BB9 /* CityWeatherTableViewCell.xib in Resources */,
 				5FA39F0726E87E4200CE4BB9 /* CitySearchTableViewController.xib in Resources */,
+				5F2D2D0726F005DA00F03F64 /* README.md in Resources */,
 				5FCE01BE26E4BA6A00F8B0C7 /* LaunchScreen.storyboard in Resources */,
 				5F558AEE26EB2B05002CE880 /* ForecastDetailsViewController.xib in Resources */,
 				5FD272F626E56BED006C0BC2 /* city.list.json in Resources */,
@@ -650,7 +653,6 @@
 				5FE23BAE26E567A500472C06 /* CitiesStore.swift in Sources */,
 				5FA39EFC26E87CB000CE4BB9 /* CityTableViewCell.swift in Sources */,
 				5F07883026EABCFC0095DAF6 /* ForecastDecoder.swift in Sources */,
-				5F07887626EB21360095DAF6 /* MockCitiesStore.swift in Sources */,
 				5F07882B26EAB5AA0095DAF6 /* DailyForecast.swift in Sources */,
 				5FCE01FC26E4C3BC00F8B0C7 /* AppCoordinator.swift in Sources */,
 				5FE23B9726E55BF700472C06 /* WeatherListCoordinator.swift in Sources */,
