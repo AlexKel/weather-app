@@ -8,6 +8,9 @@
 import UIKit
 
 class ForecastDetailsCoordinator: Coordinator {
+    weak var parentCoordinator: Coordinator?
+    
+    var childCoordinators: [Coordinator] = []
     private let presenter: UINavigationController
     private let client: APIClient
     private let store: CitiesStore
@@ -25,6 +28,7 @@ class ForecastDetailsCoordinator: Coordinator {
     func start() {
         let details = ForecastDetailsViewController(viewModel: ForecastDetailsViewModel(city: city, client: client, store: store))
         details.delegate = self
+        details.coordinator = self
         presenter.pushViewController(details, animated: true)
         self.forecastViewController = details
     }

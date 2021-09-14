@@ -12,7 +12,7 @@ protocol ForecastDetailsViewControllerDelegate: class {
     func didSelectDelete()
 }
 
-class ForecastDetailsViewController: UIViewController {
+class ForecastDetailsViewController: CoordinatedViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!

@@ -12,6 +12,10 @@ protocol CitiesSearchPresenter: UIViewController {
 }
 
 class CitiesSearchCoordinator: Coordinator {
+    weak var parentCoordinator: Coordinator?
+    
+    var childCoordinators: [Coordinator] = []
+    
     // Presenter and data controller
     private weak var presenter: CitiesSearchPresenter?
     private let store: CitiesStore
