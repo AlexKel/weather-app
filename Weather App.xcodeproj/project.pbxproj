@@ -33,6 +33,7 @@
 		5F07887726EB21360095DAF6 /* MockCitiesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07887526EB21360095DAF6 /* MockCitiesStore.swift */; };
 		5F07887E26EB21710095DAF6 /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07881626EAA00D0095DAF6 /* MockAPIClient.swift */; };
 		5F2D2D0726F005DA00F03F64 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5F2D2D0626F005DA00F03F64 /* README.md */; };
+		5F2D2D1226F0772F00F03F64 /* CoordinatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2D2D1126F0772E00F03F64 /* CoordinatedViewController.swift */; };
 		5F558AED26EB2B05002CE880 /* ForecastDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F558AEB26EB2B05002CE880 /* ForecastDetailsViewController.swift */; };
 		5F558AEE26EB2B05002CE880 /* ForecastDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F558AEC26EB2B05002CE880 /* ForecastDetailsViewController.xib */; };
 		5F558AF626EB2D3B002CE880 /* ForecastDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F558AF526EB2D3B002CE880 /* ForecastDetailsCoordinator.swift */; };
@@ -127,6 +128,7 @@
 		5F07886E26EB1EE40095DAF6 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		5F07887526EB21360095DAF6 /* MockCitiesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCitiesStore.swift; sourceTree = "<group>"; };
 		5F2D2D0626F005DA00F03F64 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5F2D2D1126F0772E00F03F64 /* CoordinatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatedViewController.swift; sourceTree = "<group>"; };
 		5F558AEB26EB2B05002CE880 /* ForecastDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailsViewController.swift; sourceTree = "<group>"; };
 		5F558AEC26EB2B05002CE880 /* ForecastDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastDetailsViewController.xib; sourceTree = "<group>"; };
 		5F558AF526EB2D3B002CE880 /* ForecastDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailsCoordinator.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 				5F558AEA26EB2AD2002CE880 /* Details */,
 				5FA39EE326E8799B00CE4BB9 /* CitiesSearch */,
 				5FE23B9B26E55CB100472C06 /* WeatherList */,
+				5F2D2D1126F0772E00F03F64 /* CoordinatedViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FCE01E926E4C36000F8B0C7 /* Coordinator.swift in Sources */,
+				5F2D2D1226F0772F00F03F64 /* CoordinatedViewController.swift in Sources */,
 				5FA39E6E26E6B6A300CE4BB9 /* CityWeatherCellViewModel.swift in Sources */,
 				5FA39E7F26E6BD0500CE4BB9 /* CityWeatherTableViewCell.swift in Sources */,
 				5FA39E7926E6BBAC00CE4BB9 /* ConfigurableCell.swift in Sources */,

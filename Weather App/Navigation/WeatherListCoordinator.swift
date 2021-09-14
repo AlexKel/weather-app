@@ -9,6 +9,10 @@ import UIKit
 
 /// Navigation coordinator for a cities list view controller
 class WeatherListCoordinator: Coordinator {
+    weak var parentCoordinator: Coordinator?
+    
+    var childCoordinators: [Coordinator] = []
+    
     // Presenter and data controller
     private let presenter: UINavigationController
     private let store: CitiesStore
@@ -16,9 +20,6 @@ class WeatherListCoordinator: Coordinator {
     
     // View controller
     private var weatherListViewController: WeatherListViewController?
-    private var searchCoordinator: CitiesSearchCoordinator?
-    private var detailsCoordinator: ForecastDetailsCoordinator?
-    
     
     init(presenter: UINavigationController, store: CitiesStore, client: APIClient) {
         self.presenter = presenter
@@ -31,20 +32,22 @@ class WeatherListCoordinator: Coordinator {
         let weatherListViewController = WeatherListViewController(viewModel: WeatherListViewModel(client: client, store: store))
         weatherListViewController.title = "Weather"
         weatherListViewController.delegate = self
+    
         presenter.pushViewController(weatherListViewController, animated: true)
         self.weatherListViewController = weatherListViewController
-        
+            
         let searchCoordinator = CitiesSearchCoordinator(presenter: weatherListViewController, store: store)
         searchCoordinator.start()
-        self.searchCoordinator = searchCoordinator
+        childCoordinators.append(searchCoordinator)
     }
 }
 
 extension WeatherListCoordinator: WeatherListViewControllerDelegate {
     func weatherListControllerDidSelectCity(_ city: City) {
         let detailCoordinator = ForecastDetailsCoordinator(presenter: presenter, city: city, store: store, client: client)
+        detailCoordinator.parentCoordinator = self
+        childCoordinators.append(detailCoordinator)
         detailCoordinator.start()
-        self.detailsCoordinator = detailCoordinator
     }
 }
 

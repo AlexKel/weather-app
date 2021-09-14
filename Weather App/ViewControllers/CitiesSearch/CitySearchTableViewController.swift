@@ -11,8 +11,7 @@ protocol CitySearchTableViewControllerDelete: class {
     func citySearchControllerDidSelectCity(_ city: City)
 }
 
-class CitySearchTableViewController: UITableViewController {
-    
+class CitySearchTableViewController: UITableViewController {    
     weak var delegate: CitySearchTableViewControllerDelete?
     private let cityCellIdentifier = "city_cell"
     let viewModel: CitiesListViewModel

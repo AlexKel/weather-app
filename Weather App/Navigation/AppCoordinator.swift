@@ -9,13 +9,16 @@ import UIKit
 
 /// Root app navigation coordinator
 class AppCoordinator: Coordinator {
+    weak var parentCoordinator: Coordinator?
+    
+    var childCoordinators: [Coordinator] = []
+    
     
     // Root view controller
     let window: UIWindow
     let rootViewController: UINavigationController
     let citiesStore: CitiesStore
     let client: APIClient
-    let weatherListCoordinator: WeatherListCoordinator
     
     
     init(window: UIWindow, store: CitiesStore, client: APIClient) {
@@ -24,10 +27,13 @@ class AppCoordinator: Coordinator {
         self.client = client
         rootViewController = UINavigationController()
         rootViewController.navigationBar.prefersLargeTitles = true
-        weatherListCoordinator = WeatherListCoordinator(presenter: rootViewController, store: citiesStore, client: client)
+        
     }
     
     func start() {
+        let weatherListCoordinator = WeatherListCoordinator(presenter: rootViewController, store: citiesStore, client: client)
+        weatherListCoordinator.parentCoordinator = self
+        childCoordinators.append(weatherListCoordinator)
         window.rootViewController = rootViewController
         weatherListCoordinator.start()
         window.makeKeyAndVisible()

@@ -50,5 +50,8 @@ extension CityWeatherTableViewCell: ConfigurableCell {
         }.store(in: &disposables)
     }
     
-
+    override func prepareForReuse() {
+        disposables.forEach { $0.cancel() }
+        super.prepareForReuse()
+    }
 }
